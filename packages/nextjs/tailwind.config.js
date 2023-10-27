@@ -40,22 +40,22 @@ module.exports = {
       },
       {
         scaffoldEthDark: {
-          primary: "#212638",
+          primary: "#FF10F0",
           "primary-content": "#F9FBFF",
-          secondary: "#323f61",
+          secondary: "#0edaff", // Bright Cyan
           "secondary-content": "#F9FBFF",
-          accent: "#4969A6",
+          accent: "#F06EDF", // Bright Pink
           "accent-content": "#F9FBFF",
           neutral: "#F9FBFF",
-          "neutral-content": "#385183",
-          "base-100": "#385183",
-          "base-200": "#2A3655",
-          "base-300": "#212638",
+          "neutral-content": "#1F51FF",
+          "base-100": "#101010", // Very Dark Grey (Background)
+          "base-200": "#191919", // Dark Grey
+          "base-300": "#232323", // Darker Grey
           "base-content": "#F9FBFF",
-          info: "#385183",
-          success: "#34EEB6",
-          warning: "#FFCF72",
-          error: "#FF8863",
+          info: "#006e82",
+          success: "#FFBF4A", // Bright Yellow
+          warning: "#FFCB77", // Brighter Yellow
+          error: "#FF9B8D", // Bright Pink
 
           "--rounded-btn": "9999rem",
 

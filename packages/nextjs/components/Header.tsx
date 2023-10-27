@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, BugAntIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -62,46 +62,64 @@ export const Header = () => {
   );
 
   return (
-    <div className="sticky lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary px-0 sm:px-2">
-      <div className="navbar-start w-auto lg:w-1/2">
-        <div className="lg:hidden dropdown" ref={burgerMenuRef}>
-          <label
-            tabIndex={0}
-            className={`ml-1 btn btn-ghost ${isDrawerOpen ? "hover:bg-secondary" : "hover:bg-transparent"}`}
-            onClick={() => {
-              setIsDrawerOpen(prevIsOpenState => !prevIsOpenState);
-            }}
-          >
-            <Bars3Icon className="h-1/2" />
-          </label>
-          {isDrawerOpen && (
-            <ul
+    <div className="sticky top-0 z-10">
+      <div className="lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary/30 px-0 sm:px-2">
+        <div className="navbar-start w-auto lg:w-1/2">
+          <div className="lg:hidden dropdown" ref={burgerMenuRef}>
+            <label
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className={`ml-1 btn btn-ghost ${isDrawerOpen ? "hover:bg-secondary" : "hover:bg-transparent"}`}
               onClick={() => {
-                setIsDrawerOpen(false);
+                setIsDrawerOpen(prevIsOpenState => !prevIsOpenState);
               }}
             >
-              <HeaderMenuLinks />
-            </ul>
-          )}
+              <Bars3Icon className="h-1/2" />
+            </label>
+            {isDrawerOpen && (
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                onClick={() => {
+                  setIsDrawerOpen(false);
+                }}
+              >
+                <HeaderMenuLinks />
+              </ul>
+            )}
+          </div>
+          <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
+            <div className="flex relative w-10 h-10">
+              <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold leading-tight">Scaffold-ETH</span>
+              <span className="text-xs">Ethereum dev stack</span>
+            </div>
+          </Link>
+          <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
+            <HeaderMenuLinks />
+          </ul>
         </div>
-        <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
-          <div className="flex relative w-10 h-10">
-            <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold leading-tight">Scaffold-ETH</span>
-            <span className="text-xs">Ethereum dev stack</span>
-          </div>
-        </Link>
-        <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
-          <HeaderMenuLinks />
-        </ul>
+        <div className="navbar-end flex-grow mr-4">
+          <RainbowKitCustomConnectButton />
+          <FaucetButton />
+        </div>
       </div>
-      <div className="navbar-end flex-grow mr-4">
-        <RainbowKitCustomConnectButton />
-        <FaucetButton />
+      <div className="relative mx-auto">
+        <div className="w-32 h-16 relative mx-auto">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 16"
+            className="w-full h-full absolute top-0 left-0 z-10 filter drop-shadow-md"
+          >
+            <polygon points="0,0 32,0 16,16" className="fill-secondary" />
+          </svg>
+        </div>
+        <div className="avatar absolute left-0 right-0 justify-center top-0  z-20">
+          <div className="rounded-full bg-black p-2">
+            <UserGroupIcon className="h-9 w-9" />
+          </div>
+        </div>
       </div>
     </div>
   );
