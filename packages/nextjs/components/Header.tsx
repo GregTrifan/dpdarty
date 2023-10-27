@@ -2,8 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Bars3Icon, BugAntIcon, UserGroupIcon } from "@heroicons/react/24/outline";
-import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
+import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
 interface HeaderMenuLink {
@@ -62,7 +61,7 @@ export const Header = () => {
   );
 
   return (
-    <div className="sticky top-0 z-10">
+    <div className="top-0 z-0">
       <div className="lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary/30 px-0 sm:px-2">
         <div className="navbar-start w-auto lg:w-1/2">
           <div className="lg:hidden dropdown" ref={burgerMenuRef}>
@@ -99,26 +98,6 @@ export const Header = () => {
           <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
             <HeaderMenuLinks />
           </ul>
-        </div>
-        <div className="navbar-end flex-grow mr-4">
-          <RainbowKitCustomConnectButton />
-          <FaucetButton />
-        </div>
-      </div>
-      <div className="relative mx-auto">
-        <div className="w-32 h-16 relative mx-auto">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 32 16"
-            className="w-full h-full absolute top-0 left-0 z-10 filter drop-shadow-md"
-          >
-            <polygon points="0,0 32,0 16,16" className="fill-secondary" />
-          </svg>
-        </div>
-        <div className="avatar absolute left-0 right-0 justify-center top-0  z-20">
-          <div className="rounded-full bg-black p-2">
-            <UserGroupIcon className="h-9 w-9" />
-          </div>
         </div>
       </div>
     </div>

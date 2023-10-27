@@ -5,10 +5,10 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import { useDisconnect, useSwitchNetwork } from "wagmi";
 import {
   ArrowLeftOnRectangleIcon,
+  ArrowRightOnRectangleIcon,
   ArrowTopRightOnSquareIcon,
   ArrowsRightLeftIcon,
   CheckCircleIcon,
-  ChevronDownIcon,
   DocumentDuplicateIcon,
   QrCodeIcon,
 } from "@heroicons/react/24/outline";
@@ -40,70 +40,107 @@ export const RainbowKitCustomConnectButton = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <button className="btn btn-primary btn-sm" onClick={openConnectModal} type="button">
-                    Connect Wallet
-                  </button>
+                  <div
+                    className="relative mx-auto"
+                    onClick={() => {
+                      openConnectModal();
+                    }}
+                  >
+                    <div className="w-32 h-16 relative mx-auto">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 16"
+                        className="w-full h-full absolute top-0 left-0 z-10 filter drop-shadow-md"
+                      >
+                        <polygon points="0,0 32,0 16,16" className="fill-secondary" />
+                      </svg>
+                    </div>
+                    <div className="avatar absolute left-0 right-0 justify-center top-0 z-20">
+                      <div className="rounded-full h-12 w-12 p-1.5">
+                        <ArrowRightOnRectangleIcon className="h-9 w-9" />
+                      </div>
+                    </div>
+                  </div>
                 );
               }
 
               if (chain.unsupported || chain.id !== configuredNetwork.id) {
                 return (
-                  <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-error btn-sm dropdown-toggle gap-1">
-                      <span>Wrong network</span>
-                      <ChevronDownIcon className="h-6 w-4 ml-2 sm:ml-0" />
-                    </label>
-                    <ul
-                      tabIndex={0}
-                      className="dropdown-content menu p-2 mt-1 shadow-center shadow-accent bg-base-200 rounded-box gap-1"
-                    >
-                      <li>
-                        <button
-                          className="btn-sm !rounded-xl flex py-3 gap-3"
-                          type="button"
-                          onClick={() => switchNetwork?.(configuredNetwork.id)}
-                        >
-                          <ArrowsRightLeftIcon className="h-6 w-4 ml-2 sm:ml-0" />
-                          <span className="whitespace-nowrap">
-                            Switch to <span style={{ color: networkColor }}>{configuredNetwork.name}</span>
-                          </span>
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className="menu-item text-error btn-sm !rounded-xl flex gap-3 py-3"
-                          type="button"
-                          onClick={() => disconnect()}
-                        >
-                          <ArrowLeftOnRectangleIcon className="h-6 w-4 ml-2 sm:ml-0" /> <span>Disconnect</span>
-                        </button>
-                      </li>
-                    </ul>
+                  <div className="px-2 flex justify-center items-center">
+                    <div className="dropdown dropdown-bottom">
+                      <div tabIndex={0} className="">
+                        <div className="w-32 h-16 relative mx-auto">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 32 16"
+                            className="w-full h-full absolute top-0 left-0 z-10 filter drop-shadow-md  dropdown-toggle"
+                          >
+                            <polygon points="0,0 32,0 16,16" className="fill-red-500" />
+                          </svg>
+                        </div>
+                        <div className="avatar absolute left-0 right-0 justify-center top-0 z-20">
+                          <div className="rounded-full h-12 w-12 p-1.5">
+                            <ArrowRightOnRectangleIcon className="h-9 w-9" />
+                          </div>
+                        </div>
+                      </div>
+                      <ul
+                        tabIndex={0}
+                        className="dropdown-content menu p-2 mt-2 shadow-center shadow-secondary bg-base-200 rounded-box gap-1"
+                      >
+                        <li>
+                          <button
+                            className="btn-sm !rounded-xl flex py-3 gap-3"
+                            type="button"
+                            onClick={() => switchNetwork?.(configuredNetwork.id)}
+                          >
+                            <ArrowsRightLeftIcon className="h-6 w-4 ml-2 sm:ml-0" />
+                            <span className="whitespace-nowrap">
+                              Switch to <span style={{ color: networkColor }}>{configuredNetwork.name}</span>
+                            </span>
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className="menu-item text-error btn-sm !rounded-xl flex gap-3 py-3"
+                            type="button"
+                            onClick={() => disconnect()}
+                          >
+                            <ArrowLeftOnRectangleIcon className="h-6 w-4 ml-2 sm:ml-0" /> <span>Disconnect</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 );
               }
 
               return (
-                <div className="px-2 flex justify-end items-center">
-                  <div className="flex flex-col items-center mr-1">
-                    <Balance address={account.address} className="min-h-0 h-auto" />
-                    <span className="text-xs" style={{ color: networkColor }}>
-                      {chain.name}
-                    </span>
-                  </div>
-                  <div className="dropdown dropdown-end leading-3">
-                    <label
-                      tabIndex={0}
-                      className="btn btn-secondary btn-sm pl-0 pr-2 shadow-md dropdown-toggle gap-0 !h-auto"
-                    >
-                      <BlockieAvatar address={account.address} size={30} ensImage={account.ensAvatar} />
-                      <span className="ml-2 mr-1">{account.displayName}</span>
-                      <ChevronDownIcon className="h-6 w-4 ml-2 sm:ml-0" />
-                    </label>
+                <div className="px-2 flex justify-center items-center">
+                  <div className="dropdown dropdown-bottom leading-3">
+                    <div tabIndex={0} className="relative mx-auto ">
+                      <div className="w-32 h-16 relative mx-auto ">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 32 16"
+                          className="w-full h-full absolute top-0 left-0 z-10 filter drop-shadow-md dropdown-toggle"
+                        >
+                          <polygon points="0,0 32,0 16,16" className="fill-secondary" />
+                        </svg>
+                      </div>
+                      <div className="avatar absolute left-0 right-0 justify-center top-0 z-20">
+                        <div className="rounded-full h-12 w-12 p-1.5">
+                          <BlockieAvatar address={account.address} size={30} ensImage={account.ensAvatar} />
+                        </div>
+                      </div>
+                    </div>
                     <ul
                       tabIndex={0}
-                      className="dropdown-content menu z-[2] p-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1"
+                      className="dropdown-content menu z-[2] p-2 mt-2 shadow-center shadow-secondary bg-base-200 rounded-box gap-1"
                     >
+                      <li>
+                        <Balance address={account.address} className="min-h-0 h-auto" />
+                      </li>
                       <li>
                         {addressCopied ? (
                           <div className="btn-sm !rounded-xl flex gap-3 py-3">
