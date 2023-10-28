@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 
 //@ts-ignore
-function Map({ address }) {
+function MapComponent({ address }) {
   const mapRef = useRef(null);
   //@ts-ignore
   // const [mapLoaded, setMapLoaded] = useState(false);
@@ -13,8 +13,6 @@ function Map({ address }) {
       apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
       version: "weekly",
     });
-
-    console.log("maps API key: " + process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
 
     loader.load().then(() => {
       //@ts-ignore
@@ -51,4 +49,4 @@ function Map({ address }) {
   return <div style={{ height: "400px", width: "400px" }} ref={mapRef} />;
 }
 
-export default Map;
+export default MapComponent;
