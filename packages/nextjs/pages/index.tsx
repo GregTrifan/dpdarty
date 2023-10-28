@@ -45,7 +45,6 @@ const Home = () => {
             </div>
           </div>,
         )}
-        phh h
       </div>
     </div>
   );

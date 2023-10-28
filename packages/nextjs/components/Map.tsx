@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+//@ts-ignore
 import { Loader } from "@googlemaps/js-api-loader";
 
 //@ts-ignore
@@ -16,12 +17,14 @@ function Map({ address }) {
     console.log("maps API key: " + process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
 
     loader.load().then(() => {
+      //@ts-ignore
       if (!window.google) {
         console.error("Google Maps JavaScript API failed to load.");
         return;
       }
-
+      //@ts-ignorex
       const geocoder = new window.google.maps.Geocoder();
+      //@ts-ignore
       geocoder.geocode({ address: address }, (results, status) => {
         if (status === "OK") {
           //@ts-ignore
@@ -30,6 +33,7 @@ function Map({ address }) {
             center: results[0].geometry.location,
             zoom: 8,
           });
+          //@ts-ignore
           /*const marker = */ new window.google.maps.Marker({
             map: map,
             //@ts-ignore

@@ -41,17 +41,16 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
         theme={isDarkTheme ? darkTheme() : lightTheme()}
       >
         <div className="flex flex-col min-h-screen">
-          <div className="sticky top-0 z-10">
-            <div className="absolute right-0 left-0 justify-center">
-              <RainbowKitCustomConnectButton />
-            </div>
-          </div>
           <Header />
           <main className="relative flex flex-col flex-1">
             <Component {...pageProps} />
           </main>
           <Footer />
+          <div className="btm-nav drop-shadow-md shadow-secondary/20">
+            <RainbowKitCustomConnectButton />
+          </div>
         </div>
+
         <Toaster />
       </RainbowKitProvider>
     </WagmiConfig>

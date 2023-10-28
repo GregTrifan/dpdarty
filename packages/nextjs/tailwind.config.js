@@ -7,7 +7,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        scaffoldEth: {
+        /*  scaffoldEth: {
           primary: "#93BBFB",
           "primary-content": "#212638",
           secondary: "#DAE8FF",
@@ -36,7 +36,7 @@ module.exports = {
           ".link:hover": {
             opacity: "80%",
           },
-        },
+        }, */
       },
       {
         scaffoldEthDark: {
