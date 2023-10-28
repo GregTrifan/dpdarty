@@ -53,9 +53,9 @@ module.exports = {
           "base-300": "#232323", // Darker Grey
           "base-content": "#F9FBFF",
           info: "#006e82",
-          success: "#FFBF4A", // Bright Yellow
-          warning: "#FFCB77", // Brighter Yellow
-          error: "#FF9B8D", // Bright Pink
+          success: "#39FF14", // Bright Yellow
+          warning: "#FFF01F", // Brighter Yellow
+          error: "#DA291C", // Bright Pink
 
           "--rounded-btn": "9999rem",
 
