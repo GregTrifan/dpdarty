@@ -38,7 +38,7 @@ const Profile: NextPage = () => {
             : undefined;
 
           return (
-            <div className="max-w-xs mx-auto text-center mt-8">
+            <div className="max-w-xs mx-auto text-center mt-8 z-20">
               {(() => {
                 if (!connected) {
                   return (
@@ -181,6 +181,18 @@ const Profile: NextPage = () => {
           );
         }}
       </ConnectButton.Custom>
+      <div
+        className="group relative left-0 right-0 bottom-42 md:top-24 text-center overflow-hidden"
+        style={{ zIndex: -1 }}
+      >
+        <h2 className="font-bold text-white/30 ml-52 mb-24 absolute" style={{ fontSize: "128px" }}>
+          Your
+        </h2>
+        <h1 className="font-black text-white/20 z-0 mr-12 mt-12" style={{ fontSize: "230px" }}>
+          Profile
+        </h1>
+        <div className="absolute left-0 right-0 w-full h-2 bg-gradient-to-r from-primary/70 via-primary/50 to-primary/70 opacity-0 transform translate-y-1/2 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
     </div>
   );
 };
