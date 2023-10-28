@@ -37,6 +37,8 @@ function MapComponent({ addresses }) {
 
       const contentString =
         '<div id="content" style="color: black">' +
+        '<button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px;' +
+        'text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Join the party</button>' +
         '<div id="siteNotice">' +
         "</div>" +
         '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
@@ -57,6 +59,8 @@ function MapComponent({ addresses }) {
         "</div>" +
         "</div>";
 
+      const infoWindows: any[] = []; // keeping track of the array of infoWindows
+
       //@ts-ignore
       addresses.forEach(item => {
         //@ts-ignore
@@ -68,6 +72,8 @@ function MapComponent({ addresses }) {
               ariaLabel: "Uluru",
             });
 
+            infoWindows.push(infowindow);
+
             //@ts-ignore
             const marker = new window.google.maps.Marker({
               map: map,
@@ -76,6 +82,11 @@ function MapComponent({ addresses }) {
             });
 
             marker.addListener("click", () => {
+              //@ts-ignore
+              infoWindows.forEach(infoWindow => {
+                infoWindow.close();
+              });
+
               infowindow.open({
                 anchor: marker,
                 map,
