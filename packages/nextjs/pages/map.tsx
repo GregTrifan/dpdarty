@@ -33,9 +33,13 @@ const MapPage = () => {
 
   return (
     <div className="mx-auto max-w-xl lg:max-w-6xl">
-      <MapComponentList addresses={data} />
-
       <h1 className="text-4xl absolute top-4 text-white mr-52">Map</h1>
+
+      <br />
+      <br />
+      <br />
+
+      <MapComponentList addresses={data} />
 
       {/* {data.map((item, index) => (
         <MapComponent key={index} address={item.Address} /> // Assuming each item in data has an "address" field

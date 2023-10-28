@@ -39,6 +39,7 @@ function MapComponent({ addresses }) {
         '<div id="content" style="color: black">' +
         '<button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px;' +
         'text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Join the party</button>' +
+        '<a href="/club/123" target="_top">Click here to visit our page</a>' +
         '<div id="siteNotice">' +
         "</div>" +
         '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
