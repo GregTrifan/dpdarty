@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { mapsTheme } from "./assets/MapsTheme";
 //@ts-ignore
 import { Loader } from "@googlemaps/js-api-loader";
 
@@ -26,6 +27,7 @@ function MapComponent({ addresses }) {
         //@ts-ignore
         center: { lat: 51.5074, lng: -0.1278 },
         zoom: 4,
+        styles: mapsTheme,
       });
 
       console.log(addresses);
