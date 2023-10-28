@@ -2537,8 +2537,11 @@ __metadata:
   resolution: "@se-2/nextjs@workspace:packages/nextjs"
   dependencies:
     "@ethersproject/providers": ^5.7.2
+    "@firebase/firestore": ^4.3.2
+    "@googlemaps/js-api-loader": ^1.16.2
     "@heroicons/react": ^2.0.11
     "@rainbow-me/rainbowkit": 1.1.2
+    "@se-2/nextjs": "workspace:^"
     "@trivago/prettier-plugin-sort-imports": ^4.1.1
     "@types/node": ^17.0.35
     "@types/react": ^18.0.9
@@ -2553,6 +2556,8 @@ __metadata:
     eslint-config-next: ^13.1.6
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.2.1
+    firebase: ^10.5.2
+    framer-motion: ^10.16.4
     next: ^13.1.6
     nextjs-progressbar: ^0.0.16
     postcss: ^8.4.16
@@ -12779,11 +12784,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
-    "@firebase/firestore": ^4.3.2
-    "@googlemaps/js-api-loader": ^1.16.2
-    "@se-2/nextjs": "workspace:^"
-    firebase: ^10.5.2
-    framer-motion: ^10.16.4
     husky: ^8.0.1
     lint-staged: ^13.0.3
     workspace: ^0.0.1-preview.1

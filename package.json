@@ -38,11 +38,6 @@
     "usehooks-ts@^2.7.2": "patch:usehooks-ts@npm:^2.7.2#./.yarn/patches/usehooks-ts-npm-2.7.2-fceffe0e43.patch"
   },
   "dependencies": {
-    "@firebase/firestore": "^4.3.2",
-    "@googlemaps/js-api-loader": "^1.16.2",
-    "@se-2/nextjs": "workspace:^",
-    "firebase": "^10.5.2",
-    "framer-motion": "^10.16.4",
     "workspace": "^0.0.1-preview.1"
   }
 }
