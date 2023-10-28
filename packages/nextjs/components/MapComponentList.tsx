@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import { mapsTheme } from "./assets/MapsTheme";
 //@ts-ignore
 import { Loader } from "@googlemaps/js-api-loader";
 
 //@ts-ignore
 function MapComponent({ addresses }) {
+  const router = useRouter();
   const mapRef = useRef(null);
   //@ts-ignore
   // const [mapLoaded, setMapLoaded] = useState(false);
@@ -39,7 +41,7 @@ function MapComponent({ addresses }) {
         '<div id="content" style="color: black">' +
         '<button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px;' +
         'text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Join the party</button>' +
-        '<a href="/club/123" target="_top">Click here to visit our page</a>' +
+        '<a id="navigateLink" target="_top">Click here to visit our page</a>' +
         '<div id="siteNotice">' +
         "</div>" +
         '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
@@ -71,6 +73,16 @@ function MapComponent({ addresses }) {
             const infowindow = new google.maps.InfoWindow({
               content: contentString,
               ariaLabel: "Uluru",
+            });
+
+            //@ts-ignore
+            google.maps.event.addListenerOnce(infowindow, "domready", () => {
+              const navigateLink = document.getElementById("navigateLink");
+              if (navigateLink) {
+                navigateLink.addEventListener("click", () => {
+                  router.push("/club/123");
+                });
+              }
             });
 
             infoWindows.push(infowindow);
