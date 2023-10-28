@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { useEffect, useState } from "react";
-import MapComponent from "../components/MapComponent";
 import { Party } from "../types/party";
 import { initializeApp } from "firebase/app";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
+import MapComponentList from "~~/components/MapComponentList";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -33,10 +33,13 @@ const MapPage = () => {
 
   return (
     <div className="mx-auto max-w-xl lg:max-w-6xl">
+      <MapComponentList addresses={data} />
+
       <h1 className="text-4xl absolute top-4 text-white mr-52">Map</h1>
-      {data.map((item, index) => (
+
+      {/* {data.map((item, index) => (
         <MapComponent key={index} address={item.Address} /> // Assuming each item in data has an "address" field
-      ))}
+      ))} */}
     </div>
   );
 
