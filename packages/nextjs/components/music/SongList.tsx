@@ -48,7 +48,7 @@ const SongCard = ({ song }: { song: Song }) => {
           <ArrowDownIcon className="h-5 w-5" />
           <span>{song.downvotes}</span>
         </button>
-        <button className="btn btn-secondary flex shadow-md shadow-secondary/40">
+        <button className="btn btn-secondary flex text-black shadow-md shadow-secondary/40">
           <ChevronDoubleUpIcon className="h-5 w-5" />
           Super vote
         </button>
