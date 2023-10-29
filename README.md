@@ -1,3 +1,24 @@
+![image](https://github.com/GregTrifan/dpdarty/assets/149298190/33f58253-0453-442c-b7db-2026326a139b)
+DECENTRALIZED PANCE DARTY
+
+DPDARTY stands as a highly advantageous party application, rooted in the principles of a voting system designed to facilitate the selection of forthcoming songs within a DJ's playlist. Through the utilization of this innovative platform, users gain the capability to identify and engage with local social gatherings or take initiative in hosting their own events.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 🏗 Scaffold-ETH 2
 
 <h4 align="center">
