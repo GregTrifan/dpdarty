@@ -34,7 +34,7 @@ const MapPage = () => {
       //@ts-ignore
       const dataPartiesArrayFromFirebaseRealTime = [];
       doc.docs.forEach(doc => {
-        dataPartiesArrayFromFirebaseRealTime.push(doc.data());
+        dataPartiesArrayFromFirebaseRealTime.push({ id: doc.id, ...doc.data() });
       });
       //@ts-ignore
       setData(dataPartiesArrayFromFirebaseRealTime);

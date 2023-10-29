@@ -37,31 +37,6 @@ function MapComponent({ addresses }) {
       //@ts-ignore
       const geocoder = new window.google.maps.Geocoder();
 
-      const contentString =
-        '<div id="content" style="color: black">' +
-        '<button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px;' +
-        'text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Join the party</button>' +
-        '<a id="navigateLink" target="_top">Click here to visit our page</a>' +
-        '<div id="siteNotice">' +
-        "</div>" +
-        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
-        '<div id="bodyContent">' +
-        "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-        "sandstone rock formation in the southern part of the " +
-        "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-        "south west of the nearest large town, Alice Springs; 450&#160;km " +
-        "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-        "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-        "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-        "Aboriginal people of the area. It has many springs, waterholes, " +
-        "rock caves and ancient paintings. Uluru is listed as a World " +
-        "Heritage Site.</p>" +
-        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-        "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
-        "(last visited June 22, 2009).</p>" +
-        "</div>" +
-        "</div>";
-
       const infoWindows: any[] = []; // keeping track of the array of infoWindows
 
       //@ts-ignore
@@ -69,18 +44,27 @@ function MapComponent({ addresses }) {
         //@ts-ignore
         geocoder.geocode({ address: item.Address }, (results, status) => {
           if (status === "OK") {
+            const contentString = `
+            <div id="content" style="color: black">
+            <h1 style="font-weight: bold; font-size: 2em">${item.Name}</h1>
+            <p style="font-size: 1.2em">${item.Address}</p>
+            <button id="navigateLink" data-id=${item.id} style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Join the party</button>
+            </div>`;
+
             //@ts-ignore
             const infowindow = new google.maps.InfoWindow({
               content: contentString,
-              ariaLabel: "Uluru",
+              ariaLabel: item.Name,
             });
 
             //@ts-ignore
             google.maps.event.addListenerOnce(infowindow, "domready", () => {
               const navigateLink = document.getElementById("navigateLink");
+
               if (navigateLink) {
+                const clubID = navigateLink.getAttribute("data-id");
                 navigateLink.addEventListener("click", () => {
-                  router.push("/club/123");
+                  router.push("/club/" + clubID);
                 });
               }
             });
