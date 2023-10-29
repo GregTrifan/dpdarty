@@ -1,20 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { useEffect, useState } from "react";
+import Modal from "../components/Modal";
 import { Party } from "../types/party";
 import "firebase/firestore";
 import { collection, onSnapshot, query } from "firebase/firestore";
-import { StarIcon } from "@heroicons/react/24/outline";
+import { PlusIcon } from "@heroicons/react/24/outline";
 import MapComponentList from "~~/components/MapComponentList";
 import { db } from "~~/services/firebase";
 
 const Home = () => {
   const [data, setData] = useState<Party[]>([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const q = query(collection(db, "parties"));
     const unsub = onSnapshot(q, snapshot => {
-      console.log("test", snapshot.docs);
+      console.log("Data", snapshot.docs);
 
       //@ts-ignore
       const dataPartiesArrayFromFirebaseRealTime = [];
@@ -47,7 +49,21 @@ const Home = () => {
 
       <MapComponentList addresses={data} />
 
-      <div className="my-8 grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-8">
+      <div className="flex gap-6 justify-start mt-8">
+        <button className="btn btn-circle btn-secondary btn-outline">
+          <PlusIcon />
+        </button>
+        <button className="my-auto font-bold text-xl" onClick={() => setShowModal(true)}>
+          Add a new party
+        </button>
+      </div>
+
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        <h1 className="text-2xl font-bold mb-4">Add the party</h1>
+        <p>This is a simple modal content.</p>
+      </Modal>
+
+      {/* <div className="my-8 grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-8">
         {Array(4).fill(
           <div className="card bg-base-100 shadow-xl max-w-84">
             <figure>
@@ -72,7 +88,7 @@ const Home = () => {
             </div>
           </div>,
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

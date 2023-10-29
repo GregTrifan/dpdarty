@@ -25,7 +25,7 @@ const MapPage = () => {
     });
 
     return () => unsub(); // Clean up the listener on unmount
-  }, []); // The empty dependency array means this useEffect runs once when the component mounts
+  }, []);
 
   return (
     <div className="mx-auto max-w-xl lg:max-w-6xl">
