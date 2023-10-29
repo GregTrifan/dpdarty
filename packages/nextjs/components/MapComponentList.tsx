@@ -64,7 +64,7 @@ function MapComponent({ addresses }) {
               if (navigateLink) {
                 const clubID = navigateLink.getAttribute("data-id");
                 navigateLink.addEventListener("click", () => {
-                  router.push("/club/" + clubID);
+                  router.push("/party/" + clubID);
                 });
               }
             });

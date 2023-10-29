@@ -1,39 +1,27 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Party } from "../types/party";
-import { initializeApp } from "firebase/app";
 import "firebase/firestore";
-import { collection, getFirestore, onSnapshot, query } from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import MapComponentList from "~~/components/MapComponentList";
-
-const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: "eth-london-separate.firebaseapp.com",
-  projectId: "eth-london-separate",
-  storageBucket: "eth-london-separate.appspot.com",
-  messagingSenderId: "969391618248",
-  appId: "1:969391618248:web:0435b7b6a944abf21dcdfd",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { db } from "~~/services/firebase";
 
 const q = query(collection(db, "parties"));
 
-onSnapshot(q, snapshot => {
-  console.log(snapshot.docs);
-});
+// onSnapshot(q, snapshot => {
+//   console.log(snapshot.docs);
+// });
 
 const MapPage = () => {
   const [data, setData] = useState<Party[]>([]);
 
   useEffect(() => {
-    const unsub = onSnapshot(q, doc => {
-      console.log("test", doc.docs);
+    const unsub = onSnapshot(q, snapshot => {
+      console.log("test", snapshot.docs);
 
       //@ts-ignore
       const dataPartiesArrayFromFirebaseRealTime = [];
-      doc.docs.forEach(doc => {
+      snapshot.docs.forEach(doc => {
         dataPartiesArrayFromFirebaseRealTime.push({ id: doc.id, ...doc.data() });
       });
       //@ts-ignore
