@@ -201,7 +201,10 @@ const SongCard = ({ song, songs }: { song: Song; songs: Song[] }) => {
 export const SongList = ({ songs }: { songs: Song[] }) => {
   return (
     <div className=" mt-12  max-w-lg">
-      {songs && songs.map(song => <SongCard songs={songs} key={song.id} song={song} />)}
+      {songs &&
+        songs
+          .sort((a, b) => (b.superVoted ? 1 : 0) - (a.superVoted ? 1 : 0))
+          .map(song => <SongCard key={song.id} songs={songs} song={song} />)}
     </div>
   );
 };
