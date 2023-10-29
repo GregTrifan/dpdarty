@@ -105,66 +105,67 @@ const SongCard = ({ song, songs }: { song: Song; songs: Song[] }) => {
           {song.isInQueue && <div className="badge badge-success badge-lg whitespace-nowrap my-auto">IN QUEUE</div>}
         </div>
       </div>
-      {!song.isInQueue && (
-        <div className="flex items-right justify-end md:justify-normal w-full gap-1">
-          <button
-            onClick={async () => {
-              if (!isVoted.voted) {
-                const partyRef = doc(db, "parties", id as string);
 
-                try {
-                  const updatedSongs = songs.map(s => (s.id === song.id ? { ...s, upvotes: s.upvotes + 1 } : s));
+      <div className="flex items-right justify-end md:justify-normal w-full gap-1">
+        <button
+          onClick={async () => {
+            if (!isVoted.voted) {
+              const partyRef = doc(db, "parties", id as string);
 
-                  await updateDoc(partyRef, {
-                    Songs: updatedSongs,
-                  });
-                  addVotedSong(song.id, "upvote");
-                  setIsVoted({ voted: true, action: "upvote" });
-                  toast.success("Song upvoted successfully!");
-                } catch (error) {
-                  toast.error("Error upvoting song");
-                  console.log(error);
-                }
-              } else {
-                toast.error("You've already voted for this song");
+              try {
+                const updatedSongs = songs.map(s => (s.id === song.id ? { ...s, upvotes: s.upvotes + 1 } : s));
+
+                await updateDoc(partyRef, {
+                  Songs: updatedSongs,
+                });
+                addVotedSong(song.id, "upvote");
+                setIsVoted({ voted: true, action: "upvote" });
+                toast.success("Song upvoted successfully!");
+              } catch (error) {
+                toast.error("Error upvoting song");
+                console.log(error);
               }
-            }}
-            className={`flex items-center  btn ${
-              isVoted.action === "upvote" ? "btn-success" : "btn-ghost text-success"
-            } rounded-md`}
-          >
-            <ArrowUpIcon className="h-5 w-5" />
-            <span>{song.upvotes}</span>
-          </button>
-          <button
-            onClick={async () => {
-              if (!isVoted.voted) {
-                const partyRef = doc(db, "parties", id as string);
+            } else {
+              toast.error("You've already voted for this song");
+            }
+          }}
+          className={`flex items-center  btn ${
+            isVoted.action === "upvote" ? "btn-success" : "btn-ghost text-success"
+          } rounded-md`}
+        >
+          <ArrowUpIcon className="h-5 w-5" />
+          <span>{song.upvotes}</span>
+        </button>
+        <button
+          onClick={async () => {
+            if (!isVoted.voted) {
+              const partyRef = doc(db, "parties", id as string);
 
-                try {
-                  const updatedSongs = songs.map(s => (s.id === song.id ? { ...s, downvotes: s.downvotes + 1 } : s));
+              try {
+                const updatedSongs = songs.map(s => (s.id === song.id ? { ...s, downvotes: s.downvotes + 1 } : s));
 
-                  await updateDoc(partyRef, {
-                    Songs: updatedSongs,
-                  });
-                  addVotedSong(song.id, "downvote");
-                  setIsVoted({ voted: true, action: "downvote" });
-                  toast.success("Song upvoted successfully!");
-                } catch (error) {
-                  toast.error("Error upvoting song");
-                  console.log(error);
-                }
-              } else {
-                toast.error("You've already voted for this song");
+                await updateDoc(partyRef, {
+                  Songs: updatedSongs,
+                });
+                addVotedSong(song.id, "downvote");
+                setIsVoted({ voted: true, action: "downvote" });
+                toast.success("Song upvoted successfully!");
+              } catch (error) {
+                toast.error("Error upvoting song");
+                console.log(error);
               }
-            }}
-            className={`flex items-center  btn ${
-              isVoted.action === "downvote" ? "btn-error" : "btn-ghost text-error"
-            } rounded-md`}
-          >
-            <ArrowDownIcon className="h-5 w-5" />
-            <span>{song.downvotes}</span>
-          </button>
+            } else {
+              toast.error("You've already voted for this song");
+            }
+          }}
+          className={`flex items-center  btn ${
+            isVoted.action === "downvote" ? "btn-error" : "btn-ghost text-error"
+          } rounded-md`}
+        >
+          <ArrowDownIcon className="h-5 w-5" />
+          <span>{song.downvotes}</span>
+        </button>
+        {!song.isInQueue && (
           <button
             onClick={() => {
               setShowModal(true);
@@ -174,25 +175,25 @@ const SongCard = ({ song, songs }: { song: Song; songs: Song[] }) => {
             <ChevronDoubleUpIcon className="h-5 w-5" />
             Super vote
           </button>
-          {Number(ownedSuperNFTs) > 0 && showModal && (
-            <>
-              <UseSuperVote
-                addToQueue={addSongToQueue}
-                onClose={() => {
-                  setShowModal(false);
-                }}
-              />
-            </>
-          )}
-          {!ownedSuperNFTs && showModal && (
-            <GetSuperVote
+        )}
+        {Number(ownedSuperNFTs) > 0 && showModal && (
+          <>
+            <UseSuperVote
+              addToQueue={addSongToQueue}
               onClose={() => {
                 setShowModal(false);
               }}
             />
-          )}
-        </div>
-      )}
+          </>
+        )}
+        {!ownedSuperNFTs && showModal && (
+          <GetSuperVote
+            onClose={() => {
+              setShowModal(false);
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };
