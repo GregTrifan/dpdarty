@@ -1,21 +1,31 @@
-# Decentralized Pance Darty
+## Decentralized Pance Darty
 ### (not Decentralied Dance Party)
 
 World is ready for peaceful (r)evolution. We party till we win.
 
+With the best DJs and with the best songs.
+
+An app that allows you to vote for the next song to be played.
+
+![](https://i.imgur.com/Yu9dk3A.jpg)
+
 ### Slides: [Google Docs](https://docs.google.com/presentation/d/1b6DT0wq1HAArHZJBDvt9QhzHAfy1w1xMmIqIyu5EnaU/edit?usp=sharing)
 
-### Sponsors
+## Sponsors
 
-**FLARE**
+### FLARE
 
 Using their EVM compatible chain.
 
-**ETH Scaffold**
+### ETH Scaffold
 
 Starting building block.
 
 ![image](https://github.com/GregTrifan/dpdarty/assets/149298190/33f58253-0453-442c-b7db-2026326a139b)
+
+### Other tech used
+
+Firebase (Google Cloud) for real-time updates.
 
 -------
 

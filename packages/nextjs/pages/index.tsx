@@ -69,7 +69,7 @@ const Home = () => {
       <div className="relative my-24 mx-auto flex justify-center">
         <h1 className="text-4xl absolute top-4 text-white mr-52">Welcome</h1>
         <h1 className="text-9xl font-extrabold relative ml-8">
-          <span className="bg-gradient-to-t from-white to-white/10 text-transparent bg-clip-text">Fam</span>
+          <span className="bg-gradient-to-t from-white to-white/10 text-transparent bg-clip-text">SER</span>
         </h1>
       </div>
 
