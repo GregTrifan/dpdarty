@@ -1,23 +1,23 @@
+# Decentralized Pance Darty
+### (not Decentralied Dance Party)
+
+World is ready for peaceful (r)evolution. We party till we win.
+
+### Slides: [Google Docs](https://docs.google.com/presentation/d/1b6DT0wq1HAArHZJBDvt9QhzHAfy1w1xMmIqIyu5EnaU/edit?usp=sharing)
+
+### Sponsors
+
+**FLARE**
+
+Using their EVM compatible chain.
+
+**ETH Scaffold**
+
+Starting building block.
+
 ![image](https://github.com/GregTrifan/dpdarty/assets/149298190/33f58253-0453-442c-b7db-2026326a139b)
-DECENTRALIZED PANCE DARTY
 
-DPDARTY stands as a highly advantageous party application, rooted in the principles of a voting system designed to facilitate the selection of forthcoming songs within a DJ's playlist. Through the utilization of this innovative platform, users gain the capability to identify and engage with local social gatherings or take initiative in hosting their own events.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-------
 
 # 🏗 Scaffold-ETH 2
 
