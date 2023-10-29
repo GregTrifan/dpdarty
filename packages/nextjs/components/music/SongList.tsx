@@ -69,17 +69,33 @@ const SongCard = ({ song, songs }: { song: Song; songs: Song[] }) => {
     functionName: "balanceOf",
     args: [walletClient?.account.address],
   });
+  const addSongToQueue = async () => {
+    const partyRef = doc(db, "parties", id as string);
+
+    try {
+      const updatedSongs = songs.map(s => (s.id === song.id ? { ...s, isInQueue: true } : s));
+
+      await updateDoc(partyRef, {
+        Songs: updatedSongs,
+      });
+
+      toast.success("Song added to queue successfully!");
+    } catch (error) {
+      toast.error("Error adding song to queue");
+      console.log(error);
+    }
+  };
   const [isVoted, setIsVoted] = useState(isSongVoted(song.id));
   const { id } = router.query || "";
   return (
-    <div className="flex justify-left bg-base-100 p-2 rounded-md md:p-0 md:bg-transparent shadow-md shadow-secondary/20 md:shadow-transparent flex-wrap md:flex-nowrap gap-3 items-center py-auto mb-4">
-      <div className="bg-base-100 flex justify-between gap-4 md:shadow-lg md:shadow-secondary/20 rounded-md w-full mb-4 md:mb-0 px-8 py-3">
+    <div className="flex justify-left bg-base-100 p-2 w-full rounded-md md:p-0 md:bg-transparent shadow-md shadow-secondary/20 md:shadow-transparent flex-wrap md:flex-nowrap gap-3 items-center py-auto mb-4">
+      <div className="bg-base-100 min-w-full flex justify-between gap-4 md:shadow-lg md:shadow-secondary/20 rounded-md w-full mb-4 md:mb-0 px-8 py-3">
         <div className="whitespace-nowrap">
           {" "}
           <span className="text-xl font-bold mr-2">{song.title}</span>{" "}
           <span className="text-secondary/60">{song.artist}</span>
         </div>
-        <div className="badge badge-success badge-lg whitespace-nowrap my-auto">IN QUEUE</div>
+        {song.isInQueue && <div className="badge badge-success badge-lg whitespace-nowrap my-auto">IN QUEUE</div>}
       </div>
       <div className="flex items-right justify-end md:justify-normal w-full gap-1">
         <button
@@ -152,6 +168,7 @@ const SongCard = ({ song, songs }: { song: Song; songs: Song[] }) => {
         {Number(ownedSuperNFTs) > 0 && showModal && (
           <>
             <UseSuperVote
+              addToQueue={addSongToQueue}
               onClose={() => {
                 setShowModal(false);
               }}

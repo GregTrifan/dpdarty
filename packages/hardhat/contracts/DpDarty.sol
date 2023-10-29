@@ -18,6 +18,7 @@ contract DpDarty is ERC721, ERC721Burnable, Ownable {
 	}
 
 	mapping(uint256 => NftUsage) private nftUsages;
+	mapping(address => uint256[]) private ownerNFTs;
 
 	constructor(address _dpdfToken) ERC721("DpDarty", "DPDT") Ownable() {
 		dpdfToken = IERC20(_dpdfToken);
@@ -27,6 +28,7 @@ contract DpDarty is ERC721, ERC721Burnable, Ownable {
 		uint256 tokenId = _nextTokenId++;
 		_safeMint(to, tokenId);
 		nftUsages[tokenId] = NftUsage(to, 0);
+		ownerNFTs[to].push(tokenId);
 	}
 
 	function useNFTForSuperVote(uint256 tokenId) public {
@@ -62,10 +64,17 @@ contract DpDarty is ERC721, ERC721Burnable, Ownable {
 		uint256 tokenId = _nextTokenId++;
 		_safeMint(msg.sender, tokenId);
 		nftUsages[tokenId] = NftUsage(msg.sender, 0);
+		ownerNFTs[msg.sender].push(tokenId);
 	}
 
 	function withdrawDPDF(uint256 amount) public onlyOwner {
 		// Withdraw DPDF tokens from the contract
 		require(dpdfToken.transfer(owner(), amount), "DPDF transfer failed");
+	}
+
+	function getOwnedNFTs(
+		address owner
+	) public view returns (uint256[] memory) {
+		return ownerNFTs[owner];
 	}
 }
