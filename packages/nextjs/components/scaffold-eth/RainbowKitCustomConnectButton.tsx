@@ -78,7 +78,7 @@ export const RainbowKitCustomConnectButton = () => {
                   <div className=" leading-3">
                     <div
                       onClick={() => {
-                        router.push("/profile");
+                        router.push("/");
                       }}
                       className="relative mx-auto "
                     >
