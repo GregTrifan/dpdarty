@@ -1,8 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import { useEffect, useState } from "react";
+import { Party } from "../types/party";
+import "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { StarIcon } from "@heroicons/react/24/outline";
+import MapComponentList from "~~/components/MapComponentList";
+import { db } from "~~/services/firebase";
 
 const Home = () => {
+  const [data, setData] = useState<Party[]>([]);
+
+  useEffect(() => {
+    const q = query(collection(db, "parties"));
+    const unsub = onSnapshot(q, snapshot => {
+      console.log("test", snapshot.docs);
+
+      //@ts-ignore
+      const dataPartiesArrayFromFirebaseRealTime = [];
+      snapshot.docs.forEach(doc => {
+        dataPartiesArrayFromFirebaseRealTime.push({ id: doc.id, ...doc.data() });
+      });
+      //@ts-ignore
+      setData(dataPartiesArrayFromFirebaseRealTime);
+    });
+
+    return () => unsub(); // Clean up the listener on unmount
+  }, []);
+
   return (
     <div className="mx-auto max-w-xl lg:max-w-6xl">
       <div className="relative my-24 mx-auto flex justify-center">
@@ -19,6 +44,8 @@ const Home = () => {
           </span>
         </span>
       </h5>
+
+      <MapComponentList addresses={data} />
 
       <div className="my-8 grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-8">
         {Array(4).fill(
