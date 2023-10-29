@@ -13,6 +13,23 @@ const Home = () => {
   const [data, setData] = useState<Party[]>([]);
   const [showModal, setShowModal] = useState(false);
 
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+
+  const handleChangeAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setAddress(value);
+  };
+  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setName(value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(name + " " + address);
+  };
+
   useEffect(() => {
     const q = query(collection(db, "parties"));
     const unsub = onSnapshot(q, snapshot => {
@@ -50,17 +67,52 @@ const Home = () => {
       <MapComponentList addresses={data} />
 
       <div className="flex gap-6 justify-start mt-8">
-        <button className="btn btn-circle btn-secondary btn-outline">
-          <PlusIcon />
-        </button>
         <button className="my-auto font-bold text-xl" onClick={() => setShowModal(true)}>
-          Add a new party
+          <span className="btn btn-circle btn-secondary btn-outline">
+            <PlusIcon />
+          </span>
+          <span className="ml-5 relative -top-4">Add a new party</span>
         </button>
       </div>
 
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         <h1 className="text-2xl font-bold mb-4">Add the party</h1>
-        <p>This is a simple modal content.</p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="name" className="block mb-2 text-sm font-medium">
+              Name of the Party:
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={handleChangeName}
+              className="w-full p-2 border rounded text-black"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="address" className="block mb-2 text-sm font-medium">
+              Address:
+            </label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              value={address}
+              onChange={handleChangeAddress}
+              className="w-full p-2 border rounded text-black"
+              required
+            />
+          </div>
+          <div>
+            <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+              Submit
+            </button>
+          </div>
+        </form>
       </Modal>
 
       {/* <div className="my-8 grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-8">
