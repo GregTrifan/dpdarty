@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
 import { Party } from "../types/party";
 import "firebase/firestore";
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, query } from "firebase/firestore";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import MapComponentList from "~~/components/MapComponentList";
 import { db } from "~~/services/firebase";
@@ -25,9 +25,22 @@ const Home = () => {
     setName(value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(name + " " + address);
+
+    const partyData = {
+      Name: name,
+      Address: address,
+    };
+
+    try {
+      const partiesCollection = collection(db, "parties");
+      const docRef = await addDoc(partiesCollection, partyData);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   useEffect(() => {
