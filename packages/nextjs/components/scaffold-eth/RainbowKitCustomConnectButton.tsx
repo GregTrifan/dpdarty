@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { HomeIcon } from "@heroicons/react/20/solid";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
-import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { useAutoConnect } from "~~/hooks/scaffold-eth";
 import { getTargetNetwork } from "~~/utils/scaffold-eth";
 
@@ -31,14 +31,14 @@ export const RainbowKitCustomConnectButton = () => {
                     <div className="w-32 h-16 relative mx-auto ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 32 16"
+                        viewBox="0 0 32 32"
                         className="w-full h-full absolute top-0 left-0 z-10 filter drop-shadow-md"
                       >
-                        <polygon points="0,0 32,0 16,16" className="fill-secondary animate-pulse" />
+                        <polygon points="16,0 32,16 16,32 0,16" className="fill-secondary animate-pulse" />
                       </svg>
                     </div>
-                    <div className="avatar absolute left-0 right-0 justify-center top-0 z-20">
-                      <div className="rounded-full h-12 w-12 p-1.5">
+                    <div className="avatar absolute left-0 right-0 justify-center top-2 z-20">
+                      <div className="rounded-full h-12 w-12 p-1.5 ">
                         <ArrowRightOnRectangleIcon className="h-9 w-9" />
                       </div>
                     </div>
@@ -57,13 +57,13 @@ export const RainbowKitCustomConnectButton = () => {
                       <div className="w-32 h-16 relative mx-auto">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 32 16"
-                          className="w-full h-full absolute top-0 left-0 z-10 filter drop-shadow-md  dropdown-toggle"
+                          viewBox="0 0 32 32"
+                          className="w-full h-full absolute top-0 left-0 z-10 filter drop-shadow-md"
                         >
-                          <polygon points="0,0 32,0 16,16" className="fill-red-500 animate-pulse" />
+                          <polygon points="16,0 32,16 16,32 0,16" className="fill-danger animate-pulse" />
                         </svg>
                       </div>
-                      <div className="avatar absolute left-0 right-0 justify-center top-0 z-20">
+                      <div className="avatar absolute left-0 right-0 justify-center top-2 z-20">
                         <div className="rounded-full h-12 w-12 p-1.5">
                           <ArrowRightOnRectangleIcon className="h-9 w-9" />
                         </div>
@@ -85,15 +85,15 @@ export const RainbowKitCustomConnectButton = () => {
                       <div className="w-32 h-16 relative mx-auto ">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 32 16"
-                          className="w-full h-full absolute top-0 left-0 z-10 filter drop-shadow-md "
+                          viewBox="0 0 32 32"
+                          className="w-full h-full absolute top-0 left-0 z-10 filter drop-shadow-md"
                         >
-                          <polygon points="0,0 32,0 16,16" className="fill-secondary animate-pulse" />
+                          <polygon points="16,0 32,16 16,32 0,16" className="fill-secondary animate-pulse" />
                         </svg>
                       </div>
-                      <div className="avatar absolute left-0 right-0 justify-center top-0 z-20">
+                      <div className="avatar absolute left-0 right-0 justify-center top-1 z-20">
                         <div className="rounded-full h-12 w-12 p-1.5">
-                          <BlockieAvatar address={account.address} size={30} ensImage={account.ensAvatar} />
+                          <HomeIcon className="h-9 w-9" />
                         </div>
                       </div>
                     </div>

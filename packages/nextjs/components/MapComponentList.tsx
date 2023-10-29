@@ -103,7 +103,7 @@ function MapComponent({ addresses }) {
   return (
     <div
       className="rounded-lg my-2"
-      style={{ height: matches ? "600px" : "50vh", width: matches ? "600px" : "35vw" }}
+      style={{ height: matches ? "600px" : "50vh", width: matches ? "600px" : "90vw" }}
       ref={mapRef}
     />
   );
