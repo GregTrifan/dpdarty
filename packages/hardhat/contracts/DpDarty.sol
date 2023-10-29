@@ -50,14 +50,18 @@ contract DpDarty is ERC721, ERC721Burnable, Ownable {
 		return nftUsages[tokenId].usages;
 	}
 
-	function payForSuperVote(uint256 amount) public {
+	function payForSuperVote() public {
 		// Perform the SuperVote payment using DPDF tokens here
+		uint256 amount = 20 ether;
 		require(
 			dpdfToken.transferFrom(msg.sender, address(this), amount),
 			"DPDF transfer failed"
 		);
 
-		// Perform the SuperVote action here
+		// Mint a DpDarty (DPDT) NFT for the user
+		uint256 tokenId = _nextTokenId++;
+		_safeMint(msg.sender, tokenId);
+		nftUsages[tokenId] = NftUsage(msg.sender, 0);
 	}
 
 	function withdrawDPDF(uint256 amount) public onlyOwner {
