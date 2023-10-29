@@ -8,10 +8,6 @@ import { db } from "~~/services/firebase";
 
 const q = query(collection(db, "parties"));
 
-// onSnapshot(q, snapshot => {
-//   console.log(snapshot.docs);
-// });
-
 const MapPage = () => {
   const [data, setData] = useState<Party[]>([]);
 
@@ -33,12 +29,6 @@ const MapPage = () => {
 
   return (
     <div className="mx-auto max-w-xl lg:max-w-6xl">
-      <h1 className="text-4xl absolute top-4 text-white mr-52">Map</h1>
-
-      <br />
-      <br />
-      <br />
-
       <MapComponentList addresses={data} />
     </div>
   );
