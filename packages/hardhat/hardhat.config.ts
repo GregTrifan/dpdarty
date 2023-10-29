@@ -50,6 +50,10 @@ const config: HardhatUserConfig = {
       url: `https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey],
     },
+    flareCoston: {
+      url: `https://flare-testnet-coston.rpc.thirdweb.com`,
+      accounts: [deployerPrivateKey],
+    },
     goerli: {
       url: `https://eth-goerli.alchemyapi.io/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey],
