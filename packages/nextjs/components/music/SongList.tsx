@@ -34,12 +34,12 @@ export const mockSongs: Song[] = [
 
 const SongCard = ({ song }: { song: Song }) => {
   return (
-    <div className="flex justify-left flex-wrap md:flex-nowrap p-1 gap-1 items-center py-auto mb-4">
-      <div className="bg-base-100 shadow-lg shadow-secondary/20 rounded-md w-full mb-4 md:mb-0 px-8 py-2">
+    <div className="flex justify-left bg-base-100 p-2 rounded-md md:p-0 md:bg-transparent shadow-md shadow-secondary/20 md:shadow-transparent flex-wrap md:flex-nowrap gap-1 items-center py-auto mb-4">
+      <div className="bg-base-100 md:shadow-lg md:shadow-secondary/20 rounded-md w-full mb-4 md:mb-0 px-8 py-2">
         <span className="text-xl font-bold mr-2">{song.title}</span>{" "}
         <span className="text-secondary/60">{song.artist}</span>
       </div>
-      <div className="flex items-right gap-1">
+      <div className="flex items-right justify-end md:justify-normal w-full gap-1">
         <button className="flex items-center text-success btn btn-ghost rounded-md">
           <ArrowUpIcon className="h-5 w-5" />
           <span>{song.upvotes}</span>

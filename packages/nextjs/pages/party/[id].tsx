@@ -3,11 +3,25 @@ import { useRouter } from "next/router";
 import Modal from "../../components/Modal";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { parseEther } from "viem";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { Song, SongList } from "~~/components/music/SongList";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { db } from "~~/services/firebase";
 
 const ClubPage = () => {
+  const { writeAsync, isLoading } = useScaffoldContractWrite({
+    contractName: "DPDF",
+    functionName: "buyTokens",
+    // For payable functions
+    value: parseEther("1"),
+    // The number of block confirmations to wait for before considering transaction to be confirmed (default : 1).
+    blockConfirmations: 1,
+    // The callback function to execute when the transaction is confirmed.
+    onBlockConfirmation: txnReceipt => {
+      console.log("Transaction blockHash", txnReceipt.blockHash);
+    },
+  });
   const [name, setName] = useState();
   const [address, setAddress] = useState();
   const [songs, setSongs] = useState<Song[]>([]);
@@ -88,6 +102,22 @@ const ClubPage = () => {
               <span className="ml-5 relative -top-4">Suggest a song</span>
             </button>
           </div>
+          <div className="flex gap-6 justify-start mt-12">
+            <span className="ml-5 relative my-auto">Out of DPDF Tokens?</span>
+            <button
+              onClick={async () => {
+                await writeAsync();
+              }}
+              disabled={isLoading}
+              className="btn btn-sm btn-secondary flex text-black shadow-md shadow-secondary/40"
+            >
+              {isLoading && <span className="loading loading-spinner"></span>}
+              Buy 1000 DPDF for 1 Ξ
+            </button>
+          </div>
+          <a className="btn btn-info mt-8" href="https://faucet.towolabs.com/">
+            Flare Faucet
+          </a>
         </div>
       </div>
 
@@ -95,20 +125,6 @@ const ClubPage = () => {
         <h1 className="text-4xl text-white/50 font-bold mb-4">Suggest a song</h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block mb-2 text-sm font-medium">
-              Artist:
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={artist}
-              onChange={handleChangeArtist}
-              className="w-full p-2 border rounded input input-bordered"
-              required
-            />
-          </div>
           <div>
             <label htmlFor="address" className="block mb-2 text-sm font-medium">
               Title:
@@ -124,6 +140,21 @@ const ClubPage = () => {
             />
           </div>
           <div>
+            <label htmlFor="name" className="block mb-2 text-sm font-medium">
+              Artist:
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={artist}
+              onChange={handleChangeArtist}
+              className="w-full p-2 border rounded input input-bordered"
+              required
+            />
+          </div>
+
+          <div>
             <button type="submit" className="px-8 py-2 btn btn-secondary text-black rounded-xl">
               Submit
             </button>
@@ -131,7 +162,7 @@ const ClubPage = () => {
         </form>
       </Modal>
 
-      <div>
+      <div className="hidden">
         <p className="font-mono mt-[300px]">Address: {address}</p>
         <p className="font-mono">Place ID: {id}</p>
       </div>

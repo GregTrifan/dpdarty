@@ -30,6 +30,7 @@ const deployDpDarty: DeployFunction = async function (hre: HardhatRuntimeEnviron
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
+
   await deploy("DpDarty", {
     from: deployer,
     // Contract constructor arguments
