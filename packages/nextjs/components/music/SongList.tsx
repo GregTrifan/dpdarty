@@ -58,11 +58,5 @@ const SongCard = ({ song }: { song: Song }) => {
 };
 
 export const SongList = ({ songs }: { songs: Song[] }) => {
-  return (
-    <div className=" mt-12  max-w-lg">
-      {songs.map(song => (
-        <SongCard key={song.id} song={song} />
-      ))}
-    </div>
-  );
+  return <div className=" mt-12  max-w-lg">{songs && songs.map(song => <SongCard key={song.id} song={song} />)}</div>;
 };

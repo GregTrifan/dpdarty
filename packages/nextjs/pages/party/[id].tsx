@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import { SongList, mockSongs } from "~~/components/music/SongList";
+import { Song, SongList } from "~~/components/music/SongList";
 import { db } from "~~/services/firebase";
 
 const ClubPage = () => {
   const [name, setName] = useState();
   const [address, setAddress] = useState();
+  const [songs, setSongs] = useState<Song[]>([]);
 
   const router = useRouter();
   const { id } = router.query || "";
@@ -20,6 +21,7 @@ const ClubPage = () => {
           console.log(doc.data());
           setName(doc.data().Name);
           setAddress(doc.data().Address);
+          setSongs(doc.data().Songs);
         }
       });
     });
@@ -32,7 +34,7 @@ const ClubPage = () => {
 
         <div className="md:mx-12 max-w-md mx-auto">
           <h4 className="text-3xl font-bold mt-8">Vote for your favorite song</h4>
-          <SongList songs={mockSongs} />
+          <SongList songs={songs} />
           <div className="flex gap-6 justify-start mt-8">
             <button className="btn btn-circle btn-secondary btn-outline">
               <PlusIcon />
