@@ -93,7 +93,7 @@ const Home = () => {
       </div>
 
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <h1 className="text-2xl font-bold mb-4">Add the party</h1>
+        <h1 className="text-4xl font-bold mb-4 text-white/50">Add the party</h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -106,7 +106,7 @@ const Home = () => {
               name="name"
               value={name}
               onChange={handleChangeName}
-              className="w-full p-2 border rounded text-black"
+              className="w-full p-2 border rounded input input-bordered "
               required
             />
           </div>
@@ -120,12 +120,12 @@ const Home = () => {
               name="address"
               value={address}
               onChange={handleChangeAddress}
-              className="w-full p-2 border rounded text-black"
+              className="w-full p-2 border rounded input input-bordered "
               required
             />
           </div>
           <div>
-            <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+            <button type="submit" className="px-4 py-2 btn btn-secondary text-black rounded-md">
               Submit
             </button>
           </div>

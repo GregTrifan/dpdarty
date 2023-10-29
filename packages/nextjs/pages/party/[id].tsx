@@ -92,7 +92,7 @@ const ClubPage = () => {
       </div>
 
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <h1 className="text-2xl font-bold mb-4">Suggest a song</h1>
+        <h1 className="text-4xl text-white/50 font-bold mb-4">Suggest a song</h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -105,7 +105,7 @@ const ClubPage = () => {
               name="name"
               value={artist}
               onChange={handleChangeArtist}
-              className="w-full p-2 border rounded text-black"
+              className="w-full p-2 border rounded input input-bordered"
               required
             />
           </div>
@@ -119,12 +119,12 @@ const ClubPage = () => {
               name="address"
               value={title}
               onChange={handleChangeTitle}
-              className="w-full p-2 border rounded text-black"
+              className="w-full p-2 border rounded input input-bordered"
               required
             />
           </div>
           <div>
-            <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+            <button type="submit" className="px-8 py-2 btn btn-secondary text-black rounded-xl">
               Submit
             </button>
           </div>

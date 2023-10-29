@@ -3,9 +3,11 @@ import { useRouter } from "next/router";
 import { mapsTheme } from "./assets/MapsTheme";
 //@ts-ignore
 import { Loader } from "@googlemaps/js-api-loader";
+import { useMediaQuery } from "usehooks-ts";
 
 //@ts-ignore
 function MapComponent({ addresses }) {
+  const matches = useMediaQuery("(min-width: 800px)");
   const router = useRouter();
   const mapRef = useRef(null);
   //@ts-ignore
@@ -45,10 +47,10 @@ function MapComponent({ addresses }) {
         geocoder.geocode({ address: item.Address }, (results, status) => {
           if (status === "OK") {
             const contentString = `
-            <div id="content" style="color: black">
+            <div id="content" style="color: black;">
             <h1 style="font-weight: bold; font-size: 2em">${item.Name}</h1>
             <p style="font-size: 1.2em">${item.Address}</p>
-            <button id="navigateLink" data-id=${item.id} style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Join the party</button>
+            <button id="navigateLink" data-id=${item.id} style="background-color: #0edaff; border: none; color: white; padding: 15px 32px;border-radius:12px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Join the party</button>
             </div>`;
 
             //@ts-ignore
@@ -95,9 +97,16 @@ function MapComponent({ addresses }) {
         });
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addresses]);
 
-  return <div style={{ height: "400px", width: "400px" }} ref={mapRef} />;
+  return (
+    <div
+      className="rounded-lg my-2"
+      style={{ height: matches ? "700px" : "60vh", width: matches ? "700px" : "85vw" }}
+      ref={mapRef}
+    />
+  );
 }
 
 export default MapComponent;
