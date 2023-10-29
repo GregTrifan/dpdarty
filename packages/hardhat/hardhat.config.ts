@@ -54,6 +54,10 @@ const config: HardhatUserConfig = {
       url: `https://flare-testnet-coston.rpc.thirdweb.com`,
       accounts: [deployerPrivateKey],
     },
+    flareTestnet: {
+      url: "https://flare-testnet-coston2.rpc.thirdweb.com",
+      accounts: [deployerPrivateKey],
+    },
     goerli: {
       url: `https://eth-goerli.alchemyapi.io/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey],
